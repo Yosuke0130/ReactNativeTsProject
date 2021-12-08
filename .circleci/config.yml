@@ -1,12 +1,11 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+# /.circleci/config.yml
+# refer: https://circleci.com/docs/2.1/language-javascript/
 version: 2.1
-
 executors:
   node-lts:
     docker:
       - image: circleci/node:12.13
     working_directory: ~/repo
-
 commands:
   setup:
     steps:
@@ -15,7 +14,6 @@ commands:
         keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-
 jobs:
   build:
     executor: node-lts
@@ -37,7 +35,6 @@ test:
         yarn coverage
     - store_artifacts:
       path: ~/repo/coverage
-
 workflows:
   version: 2
   test:
