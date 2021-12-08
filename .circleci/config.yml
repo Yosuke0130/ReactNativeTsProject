@@ -18,14 +18,14 @@ commands:
 
 jobs:
   build:
-    executor: nodelts
+    executor: node-lts
     steps:
       - setup
       - run: yarn
       - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 test:
   executor: node-lts
   steps:
